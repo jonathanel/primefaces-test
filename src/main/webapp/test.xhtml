@@ -1,54 +1,29 @@
-<!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-    <h:head>   
-        <title>PrimeFaces Test</title>
-    </h:head>
-    <h:body>
-        
-        <h1>#{testView.testString}</h1>
-        
-	    
-	    If a column of the second table is resized (and a scroll appear) then this button is pressed, <br />
-	    the scroll dissapear from the second table but not in the first one.
-	    <p:commandButton process="@this" update="car car2" value="test"/>
-	    
-	    <br />
-	    
-        <p:dataTable id="car2" var="car2" value="#{testView.cars1}" scrollable="true" scrollWidth="400">
-	        <p:column headerText="Id" footerText="Id">
-	            <h:outputText value="#{car2.id}" />
-	        </p:column>
-	        <p:column headerText="Year" footerText="Year">
-	            <h:outputText value="#{car2.year}" />
-	        </p:column>
-	        <p:column headerText="Brand" footerText="Brand">
-	            <h:outputText value="#{car2.brand}" />
-	        </p:column>
-	        <p:column headerText="Color" footerText="Color">
-	            <h:outputText value="#{car2.color}" />
-	        </p:column>
-	    </p:dataTable>
-	    
-	    <br />
-        
-        <p:dataTable id="car" var="car" value="#{testView.cars1}" scrollable="true" resizeMode="expand" resizableColumns="true">
-	        <p:column headerText="Id" footerText="Id">
-	            <h:outputText value="#{car.id}" />
-	        </p:column>
-	        <p:column headerText="Year" footerText="Year">
-	            <h:outputText value="#{car.year}" />
-	        </p:column>
-	        <p:column headerText="Brand" footerText="Brand">
-	            <h:outputText value="#{car.brand}" />
-	        </p:column>
-	        <p:column headerText="Color" footerText="Color">
-	            <h:outputText value="#{car.color}" />
-	        </p:column>
-	    </p:dataTable>
-    </h:body>
+<f:view contentType="text/html">
+	<h:head>
+	</h:head>
+	<h:body>
+		
+		<h2> Client state test (SINTEC-34)</h2>
+
+        	<h:form>
+		    <p:commandButton value="show dialog" type="button" onclick="PF('dlg1').show();" />
+
+			<p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40" maximizable="true">
+			    <h:outputText value="Resistance to PrimeFaces is futile!" />
+			</p:dialog>
+
+		    <p:commandButton process="@this" update="@form" value="update form"/>
+		</h:form>
+
+	</h:body>
+</f:view>
+
 </html>
